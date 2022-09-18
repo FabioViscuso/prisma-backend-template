@@ -56,30 +56,32 @@ Then you will be able to start the project, refer to the section below:
     📁app
 
         📁config
-            🔹env.config.ts             contains a reference to all the env variables
+            🔹env.config.ts                     contains a reference to all the env variables
 
         📁controllers
-            🔹users.controller.ts       handles signup & login logic and CRUD operations on users table
-            🔹products.controller.ts    handles CRUD operations on products table
+            🔹products.controller.ts            handles CRUD operations on products table
+            🔹users.controller.ts               handles signup & login logic and CRUD operations on users table
 
         📁middleware
-            🔹checkDuplicates.ts        Check username & password
-            🔹verifyToken.ts            Check Token + check user-db-roles
+            🔹checkDuplicates.middleware.ts     checks if a certain username or email exists already
+            🔹checkProduct.middleware.ts        verify the existance of a product and acts accordingly
+            🔹verifyToken.middleware.ts         used to verify the existence and validity of token in protected routes
 
         📁routes
-            🔹auth.routes.ts            register (user creation) and login
-            🔹user.routes.ts            endpoints for user RUD
+            🔹auth.routes.ts                    register (user creation) and login
+            🔹product.routes.ts                 endpoints for product CRUD
+            🔹user.routes.ts                    endpoints for user -RUD, the creation is managed in auth
 
-        🔹server.ts                     the main server file
+        🔹server.ts                             the main server file
 
     📁build
         🔹(contains the generated .js files from build command. Content may vary based on tsc config)
 
     📁prisma
 
-        📁migrations                    contains subfolders with migration data
+        📁migrations                        contains subfolders with migration data
 
-        🔹schema.prisma                 contains prisma config and handles the generation of models
+        🔹schema.prisma                     contains prisma config and handles the generation of models
 
     (🔹.env)                                for env variables, you have to create it manually
     🔹.gitignore                            ignored files and folders
@@ -116,4 +118,4 @@ Then you will be able to start the project, refer to the section below:
 This project is an overhaul and TypeScript port of this one:
 - https://github.com/jagama/Node-Test/
 
-Which was born as a starting point for studying local backend auth
+Which was born as a starting point for studying local backend
