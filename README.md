@@ -83,7 +83,6 @@ Then you will be able to start the project, refer to the section below:
 
     (🔹.env)                                for env variables, you have to create it manually
     🔹.gitignore                            ignored files and folders
-    🔹docker-compose.yaml                   docker config file ready to fire up a postreSQL instance
     🔹LICENSE                               already set to MIT type, modify this file with your name
     🔹package-lock.json                     complete tree of installed dependencies
     🔹package.json                          general project configuration
@@ -107,13 +106,10 @@ Then you will be able to start the project, refer to the section below:
     PUT     /api/product                modify product
     DELETE  /api/product                delete product
 
-
 ## Other steps
 
 -   LICENSE file can be modified with your name
 -   package.json can be modified with your name, project name, and repo url
--   Find attached a docker-compose.yaml file to fire up a containerized instance of postgresql - or delete the file if not needed
-
 
 ## Credits
 
