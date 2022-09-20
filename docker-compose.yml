@@ -1,0 +1,48 @@
+# REQUIRES DOCKER DESKTOP OR A CLI VERSION OF DOCKER INSTALLED WITH DAEMON RUNNING
+
+# To make easier to develop on foreign machines, or if you don't want to commit on PostgreSQL,
+# here is PostgreSQL + pgAdmin (web based version) in a dockerized setup.
+
+# USAGE
+
+# Run 'docker compose up -d' or if using VS Code w/ Docker extension, right-click this
+# file and then 'Compose Up'.
+
+# To access pgAdmin, type in your browser localhost:5050/browser/
+# Use the data listed in pgadmin service to log in
+# Then register a new server with the data listed in the postgres-db service
+
+version: "3.8"
+services:
+  # this service is the actual database server
+  postgres-db:
+    image: postgres
+    # this will be the name of the 'hostname' in pgadmin
+    container_name: local_pgdb
+    restart: always
+    ports:
+      - "54320:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+  # this service is the for pgadmin GUI
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@mail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  local_pgdata:
+  pgadmin-data:
+
+    # Database link as env variable, based on the data used above:
+    # DATABASE_URL="postgresql://postgres:postgres@localhost:54320/postgres?schema=public"
